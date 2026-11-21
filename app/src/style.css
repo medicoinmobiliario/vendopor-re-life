@@ -1,0 +1,116 @@
+/* Barcelona Real Estate Life · prototipo jugable (brel-) */
+
+.brel-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  border-radius: 6px; padding: 9px 14px; font-size: 14px; font-weight: 600;
+  border: 1px solid transparent; cursor: pointer; background: none;
+}
+.brel-btn:disabled { opacity: .4; cursor: not-allowed; }
+.brel-btn--prim { background: var(--ds-teal, #73a89a); color: #fff; }
+.brel-btn--sec { border-color: var(--ds-hairline, #eae9ea); color: var(--ds-ink, #251f21); }
+.brel-btn--ghost { color: var(--ds-ink-2, #585254); }
+.brel-btn--sm { padding: 5px 10px; font-size: 12px; }
+
+.brel-card { border: 1px solid var(--ds-hairline, #eae9ea); border-radius: 12px; padding: 16px; background: #fff; }
+.brel-card + .brel-card { margin-top: 12px; }
+.brel-panel { border: 1px solid var(--ds-hairline, #eae9ea); border-radius: 10px; padding: 12px; }
+.brel-muted { color: var(--ds-ink-2, #585254); }
+.brel-small { font-size: 12px; }
+.brel-title { font-size: 18px; font-weight: 600; margin: 0 0 4px; }
+.brel-h2 { font-size: 16px; font-weight: 600; margin: 0 0 8px; }
+.brel-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ds-teal, #73a89a); margin: 0 0 4px; }
+
+.brel-grid2 { display: grid; gap: 10px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .brel-grid2 { grid-template-columns: 1fr 1fr; } }
+.brel-stack { display: flex; flex-direction: column; gap: 10px; }
+.brel-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.brel-spread { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.brel-mt { margin-top: 14px; }
+.brel-center { text-align: center; }
+
+.brel-input, .brel-select {
+  width: 100%; border: 1px solid var(--ds-hairline, #eae9ea); border-radius: 6px;
+  padding: 8px 10px; font-size: 14px; color: var(--ds-ink, #251f21); background: #fff; box-sizing: border-box;
+}
+.brel-input:focus, .brel-select:focus { outline: 2px solid var(--ds-teal, #73a89a); outline-offset: -1px; }
+.brel-label { font-size: 12px; color: var(--ds-ink-2, #585254); display: block; }
+
+.brel-opt {
+  display: block; width: 100%; text-align: left; border: 1px solid var(--ds-hairline, #eae9ea);
+  border-radius: 10px; padding: 10px 12px; font-size: 14px; background: #fff; cursor: pointer; color: var(--ds-ink, #251f21);
+}
+.brel-opt:hover { border-color: var(--ds-teal, #73a89a); }
+.brel-opt--sel { border-color: var(--ds-teal, #73a89a); background: rgba(115,168,154,.1); }
+.brel-opt--ok { border-color: var(--ds-teal, #73a89a); background: rgba(115,168,154,.14); }
+.brel-opt--bad { border-color: var(--ds-red, #ed313e); background: rgba(237,49,62,.07); }
+.brel-opt:disabled { cursor: default; }
+.brel-opt--dim { opacity: .55; }
+
+.brel-bar { height: 8px; border-radius: 99px; background: var(--ds-hairline, #eae9ea); overflow: hidden; }
+.brel-bar > div { height: 100%; border-radius: 99px; background: var(--ds-teal, #73a89a); }
+
+.brel-topbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; border-bottom: 1px solid var(--ds-hairline, #eae9ea); padding-bottom: 12px; margin-bottom: 16px; }
+.brel-topbar .brel-grow { flex: 1; min-width: 140px; }
+
+.brel-chat { border: 1px solid var(--ds-hairline, #eae9ea); border-radius: 12px; padding: 12px; }
+.brel-chatlog { max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.brel-msg { max-width: 85%; border-radius: 14px; padding: 8px 12px; font-size: 14px; }
+.brel-msg--npc { align-self: flex-start; background: rgba(37,31,33,.06); border-bottom-left-radius: 4px; }
+.brel-msg--me { align-self: flex-end; background: var(--ds-teal, #73a89a); color: #fff; border-bottom-right-radius: 4px; }
+.brel-fb { font-size: 11px; font-style: italic; color: var(--ds-teal, #73a89a); margin: 2px 0 0; max-width: 85%; }
+
+.brel-chip { display: inline-block; border-radius: 99px; padding: 2px 10px; font-size: 10px; font-weight: 600; background: rgba(37,31,33,.07); color: var(--ds-ink-2, #585254); }
+.brel-chip--on { background: var(--ds-teal, #73a89a); color: #fff; }
+.brel-chip--done { background: rgba(115,168,154,.18); color: var(--ds-ink, #251f21); }
+
+.brel-lugar { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; }
+.brel-lugar strong { font-size: 14px; }
+.brel-lugar--activo { border-color: var(--ds-teal, #73a89a); background: rgba(115,168,154,.08); }
+
+.brel-pc { border: 1px solid var(--ds-hairline, #eae9ea); border-radius: 14px; overflow: hidden; }
+.brel-pc-body { display: flex; min-height: 320px; }
+.brel-pc-nav { width: 150px; flex-shrink: 0; border-right: 1px solid var(--ds-hairline, #eae9ea); padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+.brel-pc-navbtn { display: flex; align-items: center; gap: 6px; border-radius: 8px; padding: 8px 10px; font-size: 12px; font-weight: 600; border: none; background: none; cursor: pointer; color: var(--ds-ink, #251f21); text-align: left; }
+.brel-pc-navbtn--on { background: var(--ds-teal, #73a89a); color: #fff; }
+.brel-pc-main { flex: 1; min-width: 0; padding: 14px; overflow-y: auto; max-height: 65vh; }
+@media (max-width: 560px) {
+  .brel-pc-body { flex-direction: column; }
+  .brel-pc-nav { width: auto; flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--ds-hairline, #eae9ea); }
+}
+
+.brel-nota { border-radius: 10px; padding: 10px 12px; font-size: 13px; border: 1px solid var(--ds-hairline, #eae9ea); background: rgba(115,168,154,.08); }
+.brel-nota--ok { border-color: rgba(115,168,154,.5); }
+.brel-ic { margin-right: 2px; }
+.brel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.brel-done { text-decoration: line-through; opacity: .6; }
+
+/* Mensajeria estilo movil (0.15): conversaciones simuladas del juego */
+.brel-fono { border: 2px solid #1f2c34; border-radius: 18px; overflow: hidden; background: #ece5dd; }
+.brel-fono-head { background: #075e54; color: #fff; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
+.brel-fono-avatar { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.brel-fono-body { padding: 12px; display: flex; flex-direction: column; gap: 8px; min-height: 220px; max-height: 320px; overflow-y: auto; }
+.brel-burb { max-width: 85%; border-radius: 10px; padding: 7px 10px; font-size: 13px; box-shadow: 0 1px 1px rgba(0,0,0,.15); margin: 0; }
+.brel-burb--npc { align-self: flex-start; background: #fff; color: #111b21; border-top-left-radius: 2px; }
+.brel-burb--me { align-self: flex-end; background: #d9fdd3; color: #111b21; border-top-right-radius: 2px; }
+.brel-burb-hora { display: block; font-size: 10px; opacity: .55; text-align: right; margin-top: 2px; }
+.brel-fono-input { display: flex; gap: 8px; padding: 8px 10px; background: #f0f2f5; border-top: 1px solid #d1d7db; align-items: center; }
+.brel-fono-input span:first-child { flex: 1; background: #fff; border-radius: 20px; padding: 8px 12px; font-size: 13px; color: #8696a0; }
+.brel-fono-input span:last-child { color: #8696a0; }
+
+/* Invitación opcional a Empleo: borrador para revisión. */
+.brel-empleo { margin: 12px 0; padding: 14px 16px; border: 1px solid var(--ds-hairline,#eae9ea); border-radius: 10px; overflow-wrap: anywhere; }
+.brel-empleo .brel-small { margin: 8px 0; }
+.brel-empleo-titulo { font-weight: 600; margin: 0 0 8px; }
+.brel-empleo--final { border-left: 4px solid var(--ds-teal,#73a89a); }
+.brel-empleo a { display: inline-block; min-height: 44px; padding: 10px 0; box-sizing: border-box; }
+
+/* Estructura de página de la versión independiente */
+body { margin: 0; background: #f4f4f2; color: #251f21; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; line-height: 1.45; }
+.brel-shell { box-sizing: border-box; max-width: 1080px; margin: 24px auto; padding: 24px; background: #fff; border: 1px solid #eae9ea; border-radius: 20px; }
+.brel-header { padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--ds-hairline, #eae9ea); }
+.brel-header h1 { margin: 0 0 6px; font-size: 26px; }
+.brel-fact { margin: 0 0 8px; font-size: 12px; color: var(--ds-teal-dark, #3b7a68); }
+.brel-intro { margin: 0; font-size: 15px; }
+.brel-closing { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--ds-hairline, #eae9ea); font-size: 12px; color: var(--ds-ink-2, #585254); }
+.brel-closing + * { font-size: 12px; }
+@media (max-width: 640px) { .brel-shell { margin: 0; border-radius: 0; padding: 14px; } }
