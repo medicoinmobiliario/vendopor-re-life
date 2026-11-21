@@ -1,3 +1,4 @@
+import logoVendopor from './vendopor-logo';
 import { InvitacionEmpleo } from './empleo';
 import { usePartidaLocal } from './guardado-local';
 import { depurarCitas } from './citas';
@@ -113,6 +114,7 @@ export function App() {
 
   return (
     <FileCard lang="es">
+      <img src={logoVendopor} alt="VENDOPOR Inmobiliaria" style={{width:195,height:44,objectFit:"contain",background:"#142e43",borderRadius:7,borderBottom:"3px solid #bc9a53",padding:"3px 10px",boxSizing:"border-box",marginBottom:12}} />
       <Header
         title="Barcelona Real Estate Life"
         fact="Versión 1.6 · beta de prueba · datos ficticios"
@@ -130,4 +132,4 @@ export function App() {
       <p className="brel-small brel-muted" style={{ margin: '8px 0 0' }}>{estado.message}</p>
     </FileCard>
   );
-    }
+}
