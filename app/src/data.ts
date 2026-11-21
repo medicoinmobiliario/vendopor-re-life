@@ -537,7 +537,7 @@ export const CONV_PROPIETARIO: DialogoNodo[] = [
         feedback: 'Cita conseguida aportando valor primero. Manual de estilo.',
       },
       {
-        texto: 'Un 3,5% más IVA, es nuestra tarifa: tómalo o déjalo.',
+        texto: 'Un 5%, es nuestra tarifa en este simulador: tómalo o déjalo.',
         siguiente: 2,
         confianza: -10,
         interes: -10,
@@ -745,7 +745,7 @@ export const CONV_CARMEN: DialogoNodo[] = [
         feedback: 'En una herencia, lo ambiguo genera desconfianza inmediata.',
       },
       {
-        texto: 'Trabajo al 3,5% sobre el precio final y solo a éxito: si el dúplex no se vende, no cobro. Se lo detallo por escrito junto a la valoración.',
+        texto: 'En este simulador, los honorarios son el 5% sobre el precio final y solo a éxito: si el dúplex no se vende, no cobro. Se lo detallo por escrito junto a la valoración.',
         siguiente: 4,
         confianza: 20,
         interes: 20,
@@ -780,14 +780,14 @@ export const CONV_MARC: DialogoNodo[] = [
     npc: 'El dúplex me encaja como inversión, pero le ofrezco 270.000 €. Es un precio serio y pago rápido.',
     opciones: [
       {
-        texto: 'Con 45.000 € menos del precio anunciado ni lo presento: sería ofender a las propietarias.',
+        texto: 'Una oferta por debajo del precio anunciado ni la presento: sería ofender a los propietarios.',
         siguiente: -1,
         confianza: -15,
         interes: -10,
         feedback: 'Filtrar ofertas sin transmitirlas ni argumentarlas quema compradores reales.',
       },
       {
-        texto: 'Lo transmito a las hermanas con sus puntos fuertes: compra sin condiciones y firma rápida. Y le preparo la rentabilidad de alquiler de la zona para justificar una subida.',
+        texto: 'Lo transmito a los hermanos con sus puntos fuertes: compra sin condiciones y firma rápida. Y le preparo la rentabilidad de alquiler de la zona para justificar una subida.',
         siguiente: 1,
         confianza: 15,
         interes: 10,
@@ -1719,7 +1719,7 @@ export const MENTOR_PASOS: MentorPaso[] = [
   },
   {
     cuando: (c) => c.vendido3,
-    mensaje: 'Tres operaciones cerradas y carrera completa: la agencia está orgullosa. Sigue trabajando el barrio: las oportunidades de captación no se acaban nunca.',
+    mensaje: 'Tres operaciones principales cerradas: la agencia está orgullosa. Revisa los requisitos de Senior y sigue con formación y operaciones libres del barrio para avanzar.',
     tip: 'Después de la carrera viene el oficio diario: comercios, oportunidades libres y formación continua. El barrio siempre tiene otra puerta.',
   },
 ];
