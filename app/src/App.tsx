@@ -1,8 +1,8 @@
 import { InvitacionEmpleo } from './empleo';
-import { cabeEnCopiaLocal } from './partidas';
+import { usePartidaLocal } from './guardado-local';
 import { depurarCitas } from './citas';
 import React from 'react';
-import { Closing, FileCard, Header, useLocalState } from './standalone';
+import { Closing, FileCard, Header } from './standalone';
 import { GameProvider, GameState, estadoInicial, useGame, Venta } from './state';
 import { PantallaCrear, PantallaEpilogo, PantallaInicio, PantallaIntro, PantallaMapa, PantallaMarina } from './screens';
 import { PantallaAcademia, PantallaAgencia } from './agency';
@@ -49,14 +49,14 @@ function Shell() {
       {enJuego && state.pantalla !== 'epilogo' && <InvitacionEmpleo state={state} />}
       {state.ventanaVenta && (state.ventasReg ?? []).find((v) => v.id === state.ventanaVenta) && (
         <div className="brel-panel" style={{ margin: '8px 0', borderColor: 'var(--ds-teal,#73a89a)' }}>
-          <p className="brel-small" style={{ margin: '0 0 6px', fontWeight: 600 }}>Comisión de esta venta · {(state.ventasReg ?? []).find((v) => v.id === state.ventanaVenta)!.titulo}</p>
+          <p className="brel-small" style={{ margin: '0 0 6px', fontWeight: 600 }}>💶 Comisión de esta venta · {(state.ventasReg ?? []).find((v) => v.id === state.ventanaVenta)!.titulo}</p>
           <DesgloseVenta v={(state.ventasReg ?? []).find((v) => v.id === state.ventanaVenta)!} />
           <div style={{ marginTop: 8 }}><Boton pequeno onClick={() => dispatch({ type: 'SET', patch: { ventanaVenta: null } })}>Entendido</Boton></div>
         </div>
       )}
       {state.resumenSemana && (
         <div className="brel-panel" style={{ margin: '8px 0', borderColor: 'var(--ds-teal,#73a89a)' }}>
-          <p className="brel-small" style={{ margin: '0 0 6px', fontWeight: 600 }}>Resumen de la semana</p>
+          <p className="brel-small" style={{ margin: '0 0 6px', fontWeight: 600 }}>🗓️ Resumen de la semana</p>
           <ResumenSemanaVista r={state.resumenSemana} />
           <div style={{ marginTop: 8 }}><Boton pequeno onClick={() => dispatch({ type: 'SET', patch: { resumenSemana: null } })}>Cerrar resumen</Boton></div>
         </div>
@@ -65,10 +65,10 @@ function Shell() {
       {state.pantalla === 'crear' && <PantallaCrear />}
       {state.pantalla === 'intro' && <PantallaIntro />}
       {state.pantalla === 'mapa' && <PantallaMapa />}
-      {state.pantalla === 'agencia' && <ConInterior icono="" titulo={state.agenciaId && state.agenciaSel && state.agenciaId !== state.agenciaSel ? "Agencia colega" : "Tu agencia"} npc="el director de la agencia"><PantallaAgencia /></ConInterior>}
+      {state.pantalla === 'agencia' && <ConInterior icono="🏢" titulo={state.agenciaId && state.agenciaSel && state.agenciaId !== state.agenciaSel ? "Agencia colega" : "Tu agencia"} npc="el director de la agencia"><PantallaAgencia /></ConInterior>}
       {state.pantalla === 'oficina' && <PantallaOficina />}
       {state.pantalla === 'academia' && <PantallaAcademia />}
-      {state.pantalla === 'vivienda' && <ConInterior icono="" titulo="Piso · Nou Barris" npc="Don Manuel (propietario)"><PantallaVivienda /></ConInterior>}
+      {state.pantalla === 'vivienda' && <ConInterior icono="🏠" titulo="Piso · Nou Barris" npc="Don Manuel (propietario)"><PantallaVivienda /></ConInterior>}
       {state.pantalla === 'vivienda2' && <PantallaSants />}
       {state.pantalla === 'vivienda3' && <PantallaGracia />}
       {state.pantalla === 'marina' && <PantallaMarina />}
@@ -97,8 +97,7 @@ function ConInterior({ icono, titulo, npc, children }: { icono: string; titulo: 
 }
 
 export function App() {
-  const [guardada, setGuardada, estado] = useLocalState<GameState | null>('brel-partida.v1', null);
-  const [copiaGrande, setCopiaGrande] = React.useState(false);
+  const [guardada, setGuardada, estado] = usePartidaLocal();
 
   if (!estado.ready) {
     return (
@@ -119,16 +118,16 @@ export function App() {
         fact="Versión 1.6 · beta de prueba · datos ficticios"
         intro="Simulador de carrera de asesor inmobiliario en Barcelona: captación, valoración, portales, negociación y tu primera venta. Todo con datos de demostración."
       />
+      {estado.error && <p className="brel-nota" role="alert" style={{ border: '2px solid #b42318', padding: 12 }}>No confíes en Continuar: la copia local puede estar desactualizada. {estado.message} Usa Guardar y conserva el código completo fuera del juego antes de cerrar.</p>}
       <GameProvider
         inicial={inicial}
-        onCambio={(s) => { const cabe = cabeEnCopiaLocal(s); setCopiaGrande(!cabe); if (estado.ready && cabe) setGuardada(s); }}
+        onCambio={(s) => { if (estado.ready) setGuardada(s); }}
         onBorrar={() => setGuardada(null)}
       >
         <Shell />
       </GameProvider>
-      <Closing>Beta de prueba con datos ficticios. Se intenta conservar la partida en este dispositivo; puede no estar disponible al volver o al cambiar de navegador. Pulsa Guardar y conserva el código como respaldo. Los honorarios del 5% y los 3 días hasta el cobro son supuestos del simulador.</Closing>
-      {copiaGrande && <p className="brel-nota" role="status">Tu partida completa ya no cabe en la copia opcional de este dispositivo. Esa copia puede estar desactualizada. Pulsa Guardar y conserva el código completo para continuar otro día: tu progreso no se recorta.</p>}
+      <Closing>Beta de prueba con datos ficticios. Se intenta conservar la partida en este dispositivo; puede no estar disponible al volver o al cambiar de navegador. Pulsa 💾 Guardar y conserva el código como respaldo. Los honorarios del 5% y los 3 días hasta el cobro son supuestos del simulador.</Closing>
       <p className="brel-small brel-muted" style={{ margin: '8px 0 0' }}>{estado.message}</p>
     </FileCard>
   );
-}
+    }
