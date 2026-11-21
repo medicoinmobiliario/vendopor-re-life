@@ -323,7 +323,7 @@ export function PantallaMapa() {
         <div className="brel-panel" style={{ marginBottom: 12, borderColor: 'var(--ds-teal,#73a89a)' }}>
           <p className="brel-small" style={{ margin: 0, fontWeight: 600 }}>Beta de sistemas completada</p>
           <p className="brel-small brel-muted" style={{ margin: '6px 0 0' }}>
-            Tres operaciones cerradas, cartera propia y carrera en marcha: has completado la carrera principal de esta beta web. Puedes seguir explorando el barrio: quedan encuentros por descubrir.
+            Has completado las tres operaciones principales de esta beta web. Si aún no has llegado a Senior, continúa con operaciones libres del barrio y formación hasta cumplir los requisitos de rango que muestra tu progreso. Puedes seguir explorando aunque ya seas Senior.
           </p>
         </div>
       )}
@@ -705,7 +705,7 @@ export function PantallaEpilogo() {
   const ventas = [state.vendido, state.vendido2, state.vendido3].filter(Boolean).length;
   return (
     <div>
-      <h2 className="brel-title">Fin de la carrera de esta candidata</h2>
+      <h2 className="brel-title">Carrera principal de la beta completada</h2>
       <p className="brel-muted brel-small">
         De llamar a puertas de agencias a cerrar tres operaciones con cartera propia:
         has llegado a <strong>Asesor Inmobiliario Senior</strong>.
@@ -713,13 +713,11 @@ export function PantallaEpilogo() {
       <div className="brel-panel brel-mt">
         <p className="brel-small" style={{ margin: 0 }}><strong>Tu trayectoria</strong></p>
         <p className="brel-small" style={{ margin: '6px 0 0' }}>
-          Día {state.dia} · {ventas} operaciones cerradas · {state.ingresos.toLocaleString('es-ES')} € facturados · reputación {state.reputacion} · {state.xp} XP
+          Día {state.dia} · {ventas} operaciones principales cerradas · {state.ingresos.toLocaleString('es-ES')} € facturados · reputación {state.reputacion} · {state.xp} XP
         </p>
       </div>
       <p className="brel-muted brel-small brel-mt">
-        Esto cierra la carrera principal de esta candidata web pre-lanzamiento: carrera completa, barrio
-        con encuentros y La Marina. Puedes seguir jugando en el barrio: quedan encuentros por descubrir.
-        Esta candidata demuestra que los sistemas base aguantan de principio a fin.
+        Has completado las tres operaciones principales y alcanzado Senior en esta beta. Puedes seguir jugando en el barrio y cerrar operaciones libres. El resumen distingue las tres operaciones principales del resto de ventas.
       </p>
       <InvitacionEmpleo state={state} />
       <div className="brel-mt">
@@ -727,4 +725,4 @@ export function PantallaEpilogo() {
       </div>
     </div>
   );
-}
+            }
