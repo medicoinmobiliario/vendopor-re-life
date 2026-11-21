@@ -18,7 +18,7 @@ Juega gratis en el navegador: https://vendopor.com/re-life-beta/
 
 - Es una beta con datos de demostración. Los honorarios del 5 % y los 3 días hasta el cobro son supuestos del simulador.
 - Para conservar una partida usa Guardar y guarda el código fuera del juego; puedes restaurarlo desde la pantalla de inicio.
-- El código fuente del proyecto no está en este repositorio.
+- `app/`: código fuente completo (React, three.js, Vite, pnpm). Ver `app/README.md` para compilarlo. La compilación independiente tiene marco y estilos propios y no equivale byte a byte al `index.html` publicado.
 - Licencia del código de RE Life: pendiente de decidir por su autor. Sin licencia explícita, todos los derechos quedan reservados. Las licencias de terceros se mantienen tal como figuran en `LICENCIAS.txt`.
 
 Autor: VENDOPOR (https://vendopor.com)
