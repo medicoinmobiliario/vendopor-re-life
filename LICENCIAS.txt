@@ -1,0 +1,42 @@
+RE LIFE 1.6 | AVISOS DE COMPONENTES DE TERCEROS
+21 de noviembre de 2026
+
+Estos componentes conservan sus licencias originales. Ninguna condición del juego pretende reducir los permisos que sus titulares conceden para esos componentes. Esta nota no cambia las condiciones de una plataforma de venta ni afirma que pueda hacerlo.
+
+1. THREE.JS, revisión 187
+Copyright © 2010-2026 three.js authors.
+Licencia MIT, texto completo en licencias/Three-MIT.txt.
+Incluye los módulos de renderizado, GLTFLoader, SkeletonUtils, BufferGeometryUtils y RoomEnvironment.
+Fuente: https://github.com/mrdoob/three.js
+Licencia: https://github.com/mrdoob/three.js/blob/HEAD/LICENSE
+Los imports de los módulos de ejemplo se han adaptado para una distribución integrada. No se incorpora el resto del proyecto Three.js.
+
+2. REACT 19.2.0, REACT DOM 19.2.0 Y SCHEDULER 0.27.0
+Copyright (c) Meta Platforms, Inc. and affiliates.
+Licencias MIT completas en licencias/react-MIT.txt, licencias/react-dom-MIT.txt y licencias/scheduler-MIT.txt.
+Fuentes: https://react.dev/ y https://github.com/facebook/react
+Se integran las bibliotecas de ejecución de producción; las herramientas de desarrollo no se distribuyen en este paquete.
+
+3. CESIUM MAN
+© 2017 Cesium. Creative Commons Attribution 4.0 International.
+Modelo de personaje con rig y animación.
+Origen: https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/CesiumMan/README.md
+Licencia de origen: https://github.com/KhronosGroup/glTF-Sample-Assets/blob/main/Models/CesiumMan/LICENSE.md
+Texto: https://creativecommons.org/licenses/by/4.0/
+Texto completo incluido en licencias/CC-BY-4.0.txt.
+Cambios del juego: escala, uso y reproducción de animaciones, recoloración de materiales y textura, integración con los accesorios del agente. En esta entrega se ha eliminado de la textura la zona del logotipo Cesium y se ha sustituido por color plano. El modelo y sus modificaciones mantienen los permisos de CC BY 4.0.
+La licencia de copyright no concede derechos de marca. No se afirma patrocinio, aprobación ni afiliación de Cesium o Khronos.
+
+4. TEXTURAS AMBIENTCG
+PavingStones128: acera, mapas de color, normal y rugosidad.
+Asphalt031: calzada, mapas de color, normal y rugosidad.
+PaintedPlaster016: yeso de fachadas/interiores, mapas de color, normal y rugosidad.
+WoodFloor043: madera, mapas de color, normal y rugosidad.
+Procedencia identificada en la preparación de los recursos del juego. Se han adaptado nombres, resolución y compresión; no se distribuyen las descargas originales completas.
+Licencia CC0 1.0 Universal: https://docs.ambientcg.com/license/
+Texto completo en licencias/CC0-1.0.txt.
+
+5. OTROS ELEMENTOS DEL PAQUETE
+Las calles, edificios, mobiliario, accesorios y escenarios se construyen mediante geometría y materiales del propio juego. El mapa es SVG generado por el juego. El paquete no incluye fotografías de inmuebles, audio, vídeos, datos de GTA ni modelos de esos juegos. No se incluyen fuentes tipográficas como archivos: se usan las disponibles en el sistema del jugador. Se han retirado pictogramas de texto que podían mostrarse como cuadrados, sin cambiar las acciones del juego.
+
+Los textos y contenidos de simulación proceden de la beta RE Life 1.6 y de las aportaciones del titular al proyecto. Las marcas citadas en contextos formativos o de simulación siguen perteneciendo a sus titulares. Este inventario describe los archivos y dependencias incorporados; no es un dictamen jurídico ni certifica derechos sobre todas las menciones comerciales.
