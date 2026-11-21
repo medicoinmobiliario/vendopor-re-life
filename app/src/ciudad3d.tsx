@@ -1,3 +1,4 @@
+import logoVendopor from './vendopor-logo';
 import { move, free, type Obstacle } from './collision';
 import { compartir, liberarEscena, detenerAvatar, entradaDeFormulario, useRendimiento3D, PanelRendimiento } from './recursos3d';
 import React, { useEffect, useRef, useState } from 'react';
@@ -415,7 +416,7 @@ export function Ciudad3D({ puntos, comercios = [], folletos = 0, encuentros = []
     nubeCielo(90, 60, 34, 0.75); nubeCielo(130, 68, 26, 0.6); nubeCielo(240, 44, 30, 0.55);
     nubeCielo(330, 96, 30, 0.45); nubeCielo(480, 120, 36, 0.4); nubeCielo(180, 130, 40, 0.35);
     escena.background = new THREE.CanvasTexture(cvCielo);
-    escena.fog = new THREE.Fog(0xdfe9ec, 60, 200);
+    escena.fog = new THREE.Fog(0xdfe9ec, 80, 230);
 
     const camara = new THREE.PerspectiveCamera(58, el.clientWidth / el.clientHeight, 0.1, 300);
     let render: THREE.WebGLRenderer;
@@ -432,7 +433,7 @@ export function Ciudad3D({ puntos, comercios = [], folletos = 0, encuentros = []
     render.shadowMap.enabled = true;
     render.shadowMap.type = THREE.PCFSoftShadowMap;
     render.toneMapping = THREE.ACESFilmicToneMapping;
-    render.toneMappingExposure = 1.02;
+    render.toneMappingExposure = 0.94;
     el.appendChild(render.domElement);
 
     // Entorno PMREM (misma técnica que la muestra aprobada): reflejos suaves
@@ -443,6 +444,29 @@ export function Ciudad3D({ puntos, comercios = [], folletos = 0, encuentros = []
     escena.environment = entorno.texture;
     salaEntorno.dispose(); pmrem.dispose();
     (escena as any).environmentIntensity = 0.42;
+
+
+    // Marca oficial decorativa, sin añadir obstáculos ni modificar las reglas.
+    const marcaCanvas = document.createElement('canvas');
+    marcaCanvas.width = 1024; marcaCanvas.height = 320;
+    const mg = marcaCanvas.getContext('2d')!;
+    mg.fillStyle = '#142e43'; mg.fillRect(0, 0, 1024, 320);
+    mg.strokeStyle = '#bc9a53'; mg.lineWidth = 12; mg.strokeRect(6, 6, 1012, 308);
+    const marcaTextura = new THREE.CanvasTexture(marcaCanvas);
+    marcaTextura.colorSpace = THREE.SRGBColorSpace;
+    const marcaImagen = new Image();
+    marcaImagen.onload = () => { mg.drawImage(marcaImagen, 62, 59, 900, 196); marcaTextura.needsUpdate = true; };
+    marcaImagen.src = logoVendopor;
+    const marcaMaterial = new THREE.MeshBasicMaterial({ map: marcaTextura, side: THREE.FrontSide });
+    const marcas: [number, number][] = [[-45,-45],[45,-45],[-45,100],[45,100],[-32,100],[-16,100],[0,100],[16,100],[32,100],[-32,-20],[0,-20],[32,-20],[-32,12],[0,12],[32,12],[-32,44],[0,44],[32,44],[-32,76],[0,76],[32,76]];
+    for (const [mx,mz] of marcas) {
+      const cartel = new THREE.Mesh(new THREE.PlaneGeometry(3.8,1.19),marcaMaterial);
+      cartel.position.set(mx,2.15,mz);
+      const reverso = cartel.clone(); reverso.rotation.y = Math.PI;
+      escena.add(cartel,reverso);
+      const poste = new THREE.Mesh(new THREE.PlaneGeometry(0.09,1.6),new THREE.MeshBasicMaterial({color:0x142e43,side:THREE.DoubleSide}));
+      poste.position.set(mx,1,mz); escena.add(poste);
+    }
 
     // Luces: tarde clara y cálida
     escena.add(new THREE.HemisphereLight(0xfffaf0, 0x8a7f70, 0.85));
@@ -1158,14 +1182,14 @@ export function Ciudad3D({ puntos, comercios = [], folletos = 0, encuentros = []
       }
 
       // Cámara en tercera persona, sin meterse en edificios
-      let distancia = 12;
+      let distancia = 10;
       const dentro = (x: number, z: number) => cajas.some((c) => x > c.min.x - 0.5 && x < c.max.x + 0.5 && z > c.min.z - 0.5 && z < c.max.z + 0.5);
       while (distancia > 2 && dentro(avatar.position.x + Math.sin(yaw) * distancia, avatar.position.z + Math.cos(yaw) * distancia)) distancia -= 1;
-      const altura = distancia >= 6 ? 9 : 9 + (6 - distancia) * 2.2;
+      const altura = distancia >= 6 ? 6.8 : 6.8 + (6 - distancia) * 2.2;
       const cx = avatar.position.x + Math.sin(yaw) * distancia;
       const cz = avatar.position.z + Math.cos(yaw) * distancia;
       camara.position.lerp(new THREE.Vector3(cx, altura, cz), 0.12);
-      camara.lookAt(avatar.position.x, 2.2, avatar.position.z);
+      camara.lookAt(avatar.position.x, 1.5, avatar.position.z);
 
       // Nubes a la deriva
       for (const nube of nubes) {
@@ -1276,4 +1300,4 @@ export function Ciudad3D({ puntos, comercios = [], folletos = 0, encuentros = []
       )}
     </div>
   );
-}
+      }
